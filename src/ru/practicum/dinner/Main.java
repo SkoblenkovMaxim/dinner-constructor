@@ -43,7 +43,18 @@ public class Main {
         String dishName = scanner.nextLine();
 
         // добавьте новое блюдо
-        dc.addDishType(dishType, dishName);
+        if (dc.checkType(dishType)) {
+            if (dc.menu.get(dishType).contains(dishName)) {
+                System.out.println("Блюдо с таким названием уже добавлено.");
+            }
+            else {
+                dc.addDishType(dishType, dishName);
+                System.out.println("Блюдо успешно добавлено!");
+            }
+        } else {
+            dc.addDishType(dishType, dishName);
+            System.out.println("Блюдо успешно добавлено!");
+        }
     }
 
     private static void generateDishCombo() {
@@ -61,11 +72,15 @@ public class Main {
 
         //реализуйте ввод типов блюд
         while (!nextItem.isEmpty()) {
-            nextItem = scanner.nextLine();
             addTypeCombo.add(nextItem);
+            nextItem = scanner.nextLine();
         }
 
         // сгенерируйте комбинации блюд и выведите на экран
-        dc.generateDishCombo(numberOfCombos, addTypeCombo);
+        for (int i = 0; i < numberOfCombos; i++) {
+            dc.generateDishCombo(numberOfCombos, addTypeCombo);
+            System.out.println("Комбо" + (i+1));
+            System.out.println(dc.generateDishCombo(numberOfCombos, addTypeCombo).get(i));
+        }
     }
 }
