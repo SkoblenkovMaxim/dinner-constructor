@@ -77,10 +77,12 @@ public class Main {
         }
 
         // сгенерируйте комбинации блюд и выведите на экран
+        dc.generateDishCombo(numberOfCombos, addTypeCombo);
+        ArrayList<ArrayList<String>> generateCombo = dc.generateDishCombo(numberOfCombos, addTypeCombo);
+
         for (int i = 0; i < numberOfCombos; i++) {
-            dc.generateDishCombo(numberOfCombos, addTypeCombo);
             System.out.println("Комбо" + (i+1));
-            System.out.println(dc.generateDishCombo(numberOfCombos, addTypeCombo).get(i));
+            System.out.println(generateCombo.get(i));
         }
     }
 }
